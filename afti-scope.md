@@ -1,7 +1,8 @@
+[Go back](./index.html)
 
 # AFTI-Scope — Autonomous Flow-Through Imaging System
 A system capable of imaging suspended particles in water samples under magnification.
-lenke til repo
+[Link to repository](https://github.com/matiah/aftiscope/tree/python_runtime)
 
 ### What:
 Designing a system capable of imaging and analyzing water samples automatically, targeted for autonomous deployments. Capable of performing computer vision inference on incoming video stream. 
@@ -19,6 +20,5 @@ helhetlig figur
 * Deployment: Docker Compose
 * Embedded control: Microcontroller running GRBL - CNC firmware
 * Messaging: MQTT 
-* MQTT
 
 ## 
