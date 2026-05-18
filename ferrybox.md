@@ -13,26 +13,28 @@ Time series data of HAB related parameters may provide an early warning or great
 ### How:
 A membrane pump pulls water from the surface into the measuring chamber, where the sensors are located. Solenoid valves in conjunction with a pump enable filling and emptying of the measuring chamber. A pressure pump can rinse the optical sensors with freshwater after measurements to prevent/reduce biofouling. 
 ## System Architecture
+#### Control flow
+```
+Home Assistant (UI + automations)
+        ↓
+MQTT Broker
+        ↓
+Go Backend (command handler / logic)
+        ↓
+WAGO PLC / Relay Controller
+        ↓
+Pumps + Solenoid Valves
+```
+
 #### Data flow
 ```
-                 ┌────────────────────────────┐
-                 │      Home Assistant        │
-                 │   (UI + automation layer)  │
-                 └────────────┬───────────────┘
-                              │ MQTT
-                              ↓
-                        MQTT Broker
-                              ↓
-                 ┌────────────────────────────┐
-                 │       Go Backend           │
-                 │ (logic + orchestration)    │
-                 └───────┬─────────┬──────────┘
-                         │         │
-         telemetry/data  │         │ control commands
-                         ↓         ↓
-                  InfluxDB     WAGO PLC / IO
-                     ↓                ↓
-                  Grafana     Pumps / Valves
+Sensors (Chl-a, temperature, oxygen, etc.)
+        ↓
+Go Backend 
+        ↓
+InfluxDB (time-series storage)
+        ↓
+Grafana (visualization & analysis)
 ```
 
 ## Technology Stack
@@ -60,9 +62,39 @@ A membrane pump pulls water from the surface into the measuring chamber, where t
     stop_bits = 1
     slave_id = 10
     mqtt_topic = "sensor/do"
-    ``` 
+        [[devices.dosensor.measurements]]
+        name = "Temperature"
+        address = 2
+        length = 1
+        unit = "C"
+        data_type = "uint32"
+            [[devices.dosensor.measurements.offsets]] # subtracting 10000 
+            operation="s"
+            value=10000
+            [[devices.dosensor.measurements.offsets]] # and dividing the result by 10
+            operation="d"
+            value=10
+    ```
+  - Allows for different types such as outputs (pumps, solenoids)
+    ```
+    [devices.wagoIOmodule]
+    name = "WAGO IO-module"
+    io_type = "output"
+    modbus_type = "TCP"
+    ip = "192.168.1.6"
+    port = 502
+        [[devices.wagoIOmodule.outputs]]
+        name = "Seawater pump"
+        address = 0
+        mqtt_topic = "ferrybox/control/do0"
+        [[devices.wagoIOmodule.outputs]]
+        name = "Rinsing pump"
+        address = 2
+        mqtt_topic = "ferrybox/control/do1"
+    ```
 - MQTT
-  - Ties back end together with front end. 
+  - Ties back end together with front end.
+  - Broker hosted through Docker Compose
 - InfluxDB
   - Easily deployable via Docker
   - API allows subscribing directly to MQTT-topics (Current implementation uses Go-API however)
@@ -70,7 +102,6 @@ A membrane pump pulls water from the surface into the measuring chamber, where t
 - Homeassistant - Frontend
   - Status interface, as well as debugging and manually actuating relays
   - Automations used to provide scheduling, such as sampling at specific times
-  - 
  
 ## Pictures
 
