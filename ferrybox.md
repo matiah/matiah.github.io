@@ -104,4 +104,4 @@ Grafana (visualization & analysis)
   - Automations used to provide scheduling, such as sampling at specific times
  
 ## Pictures
-
+<img src="/img/ferryboxio.png" alt="Layout" width="80%">
