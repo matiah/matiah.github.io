@@ -1,6 +1,6 @@
+[Go back](./index.html)
 # DIY PID controlled Filament Dryer
-
-
+Filament drier designed in Freecad and printed on my Bambu Lab A1 mini using PETG. The sides are laser cut acrylic, insulated to keep the heat in. 
 
 
 
@@ -70,3 +70,6 @@
         ▲                          │
         └────── Environment ◄──────┘
 ``` 
+
+### Pictures
+
