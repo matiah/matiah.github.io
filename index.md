@@ -5,6 +5,7 @@ This site showcases some of the work I've previously done, or stuff that I'm cur
 ### [Ferrybox](./ferrybox.html)
 ------
 ## Hobby projects / Silly stuff
+### [Tracking work hours](./attendance.html)
 ### Filament Drier
 ### Variometer
 ### Pongdog
