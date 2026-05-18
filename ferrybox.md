@@ -1,8 +1,8 @@
 [Go back](./index.html)
 
 # Ferrybox — HAB warning system
-Water sampling system 
-[Link to repository](https://github.com/matiah/aftiscope/tree/python_runtime)
+Water sampling system for fish farming vessels, providing time series data for parameters related to (harmful) algal blooms. 
+[Link to repository]((https://github.com/matiah/ferrybox-dev/tree/wagoIO))
 
 <img src="/img/Layout.png" alt="Layout" width="49%"> <img src="/img/inference2.png" alt="Layout" width="49%">
 
