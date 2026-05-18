@@ -3,6 +3,7 @@
 # AFTI-Scope — Autonomous Flow-Through Imaging System
 A system capable of imaging suspended particles in water samples under magnification.
 [Link to repository](https://github.com/matiah/aftiscope/tree/python_runtime)
+
 <img src="/img/Layout.png" alt="Layout" width="49%"> <img src="/img/inference2.png" alt="Layout" width="49%">
 
 ### What:
