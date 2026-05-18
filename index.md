@@ -7,5 +7,4 @@ This site showcases some of the work I've previously done, or stuff that I'm cur
 ## Hobby projects / Silly stuff
 ### [Tracking work hours](./attendance.html)
 ### Filament Drier
-### Variometer
-### Pongdog
+### [Pongdog](https://github.com/orgs/pongdog/repositories)
